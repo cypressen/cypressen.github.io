@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://cypressen.github.io</id>
+    <title>サイプレス</title>
+    <subtitle></subtitle>
+    <icon>https://cypressen.github.io/assets/favicon.ico</icon>
+    <link href="https://cypressen.github.io" />
+    <author>
+      <name>cypress</name>
+    </author>
+    <updated>2024-02-20T08:49:17.832Z</updated>
+    <entry>
+        <id>https://cypressen.github.io/other/hello-world/</id>
+        <title>Hello World</title>
+        <link rel="alternate" href="https://cypressen.github.io/other/hello-world/"/>
+        <content type="html">&lt;p&gt;Welcome to &lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&#34;https://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;https://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;quick-start&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quick-start&#34;&gt;#&lt;/a&gt; Quick Start&lt;/h2&gt;
+&lt;h3 id=&#34;create-a-new-post&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-new-post&#34;&gt;#&lt;/a&gt; Create a new post&lt;/h3&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo new &lt;span class=&#34;string&#34;&gt;&amp;quot;My New Post&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/writing.html&#34;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;run-server&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#run-server&#34;&gt;#&lt;/a&gt; Run server&lt;/h3&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/server.html&#34;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;generate-static-files&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#generate-static-files&#34;&gt;#&lt;/a&gt; Generate static files&lt;/h3&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/generating.html&#34;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;deploy-to-remote-sites&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#deploy-to-remote-sites&#34;&gt;#&lt;/a&gt; Deploy to remote sites&lt;/h3&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/one-command-deployment.html&#34;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+</content>
+        <category term="other" scheme="https://cypressen.github.io/categories/other/" />
+        <updated>2024-02-20T08:49:17.832Z</updated>
+    </entry>
+    <entry>
+        <id>https://cypressen.github.io/test/test1/</id>
+        <title>test1</title>
+        <link rel="alternate" href="https://cypressen.github.io/test/test1/"/>
+        <content type="html">&lt;p&gt;我们做一个简单的测试&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/background.png&#34; alt=&#34;使用插件引入的图片&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;无序&lt;/li&gt;
+&lt;li&gt;无序&lt;/li&gt;
+&lt;li&gt;ok
+&lt;ul&gt;
+&lt;li&gt;ok&lt;/li&gt;
+&lt;li&gt;okk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;引入一个一级标题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#引入一个一级标题&#34;&gt;#&lt;/a&gt; 引入一个一级标题&lt;/h1&gt;
+&lt;p&gt;这是正文&lt;/p&gt;
+</content>
+        <category term="test" scheme="https://cypressen.github.io/categories/test/" />
+        <category term="MarkDown" scheme="https://cypressen.github.io/tags/MarkDown/" />
+        <category term="c++" scheme="https://cypressen.github.io/tags/c/" />
+        <updated>2024-02-19T15:33:22.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://cypressen.github.io/test/test2/</id>
+        <title>test2</title>
+        <link rel="alternate" href="https://cypressen.github.io/test/test2/"/>
+        <content type="html">&lt;p&gt;第二个测试&lt;/p&gt;
+</content>
+        <category term="test" scheme="https://cypressen.github.io/categories/test/" />
+        <category term="tag1" scheme="https://cypressen.github.io/tags/tag1/" />
+        <updated>2024-02-19T15:33:22.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://cypressen.github.io/test/test3/</id>
+        <title>test3</title>
+        <link rel="alternate" href="https://cypressen.github.io/test/test3/"/>
+        <content type="html">&lt;p&gt;第三个测试&lt;/p&gt;
+</content>
+        <category term="test" scheme="https://cypressen.github.io/categories/test/" />
+        <category term="tag2" scheme="https://cypressen.github.io/tags/tag2/" />
+        <updated>2024-02-19T15:33:22.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://cypressen.github.io/test/test4/</id>
+        <title>test4</title>
+        <link rel="alternate" href="https://cypressen.github.io/test/test4/"/>
+        <content type="html">&lt;p&gt;第四个测试&lt;br /&gt;
+测试卡片&lt;/p&gt;
+</content>
+        <category term="test" scheme="https://cypressen.github.io/categories/test/" />
+        <category term="tag6" scheme="https://cypressen.github.io/tags/tag6/" />
+        <updated>2024-02-19T15:33:22.000Z</updated>
+    </entry>
+</feed>
