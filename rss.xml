@@ -8,7 +8,7 @@
         <author>
           <name>cypress</name>
         </author>
-        <description></description>
+        <description>记录几乎一切</description>
         <language>zh-CN</language>
         <pubDate>Tue, 20 Feb 2024 16:49:17 +0800</pubDate>
         <lastBuildDate>Tue, 20 Feb 2024 16:49:17 +0800</lastBuildDate>
@@ -32,6 +32,16 @@
 &lt;h3 id=&#34;deploy-to-remote-sites&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#deploy-to-remote-sites&#34;&gt;#&lt;/a&gt; Deploy to remote sites&lt;/h3&gt;
 &lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/one-command-deployment.html&#34;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://cypressen.github.io/test/test2/</guid>
+            <title>test2</title>
+            <link>https://cypressen.github.io/test/test2/</link>
+            <category term="test" scheme="https://cypressen.github.io/categories/test/" />
+            <category term="tag1" scheme="https://cypressen.github.io/tags/tag1/" />
+            <pubDate>Mon, 19 Feb 2024 23:33:22 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;第二个测试&lt;/p&gt;
  ]]></description>
         </item>
         <item>
@@ -59,13 +69,14 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://cypressen.github.io/test/test2/</guid>
-            <title>test2</title>
-            <link>https://cypressen.github.io/test/test2/</link>
+            <guid isPermalink="true">https://cypressen.github.io/test/test4/</guid>
+            <title>test4</title>
+            <link>https://cypressen.github.io/test/test4/</link>
             <category term="test" scheme="https://cypressen.github.io/categories/test/" />
-            <category term="tag1" scheme="https://cypressen.github.io/tags/tag1/" />
+            <category term="tag6" scheme="https://cypressen.github.io/tags/tag6/" />
             <pubDate>Mon, 19 Feb 2024 23:33:22 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;第二个测试&lt;/p&gt;
+            <description><![CDATA[ &lt;p&gt;第四个测试&lt;br /&gt;
+测试卡片&lt;/p&gt;
  ]]></description>
         </item>
         <item>
@@ -76,17 +87,6 @@
             <category term="tag2" scheme="https://cypressen.github.io/tags/tag2/" />
             <pubDate>Mon, 19 Feb 2024 23:33:22 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;第三个测试&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://cypressen.github.io/test/test4/</guid>
-            <title>test4</title>
-            <link>https://cypressen.github.io/test/test4/</link>
-            <category term="test" scheme="https://cypressen.github.io/categories/test/" />
-            <category term="tag6" scheme="https://cypressen.github.io/tags/tag6/" />
-            <pubDate>Mon, 19 Feb 2024 23:33:22 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;第四个测试&lt;br /&gt;
-测试卡片&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
