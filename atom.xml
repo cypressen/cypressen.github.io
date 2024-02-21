@@ -8,7 +8,31 @@
     <author>
       <name>cypress</name>
     </author>
-    <updated>2024-02-20T08:49:17.832Z</updated>
+    <updated>2024-02-21T05:09:00.000Z</updated>
+    <entry>
+        <id>https://cypressen.github.io/shokax/log_1/</id>
+        <title>log_1</title>
+        <link rel="alternate" href="https://cypressen.github.io/shokax/log_1/"/>
+        <content type="html">&lt;h2 id=&#34;关于博客主题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#关于博客主题&#34;&gt;#&lt;/a&gt; 关于博客主题&lt;/h2&gt;
+&lt;p&gt;十分感谢 shoka 和 shokax 项目的各位付出，shoka 的主题非常适合 otaku 创建一个属于自己的个性博客，shokax 的派生足以证明大家对 shoka 的喜爱。&lt;br /&gt;
+正是如此，我也愿意花了一天时间从 shoka 转移到 shokax。&lt;s&gt;身在 shokax 心在 shoka&lt;/s&gt;&lt;br /&gt;
+ 博客搭建花了三天时间，大多数时间花都在配置主题&lt;s&gt;还有找图&lt;/s&gt;上了。&lt;/p&gt;
+&lt;h2 id=&#34;启用的插件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#启用的插件&#34;&gt;#&lt;/a&gt; 启用的插件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;图片轮换&lt;/li&gt;
+&lt;li&gt;音频播放器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;目前关注的问题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#目前关注的问题&#34;&gt;#&lt;/a&gt; 目前关注的问题&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;deploy 到 github 后图片清晰度问题，本地 md 的理想呈现&lt;/li&gt;
+&lt;li&gt;在 shokax 引入自定义 css -&amp;gt; 为了使用萌娘百科的黑幕&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/shokax/log_1/1.png&#34; alt=&#34;顺便带个图片测试&#34; /&gt;&lt;/p&gt;
+</content>
+        <category term="shokax" scheme="https://cypressen.github.io/categories/shokax/" />
+        <category term="shokax_logs" scheme="https://cypressen.github.io/tags/shokax-logs/" />
+        <updated>2024-02-21T05:09:00.000Z</updated>
+    </entry>
     <entry>
         <id>https://cypressen.github.io/other/hello-world/</id>
         <title>Hello World</title>
@@ -30,60 +54,5 @@
 </content>
         <category term="other" scheme="https://cypressen.github.io/categories/other/" />
         <updated>2024-02-20T08:49:17.832Z</updated>
-    </entry>
-    <entry>
-        <id>https://cypressen.github.io/test/test1/</id>
-        <title>test1</title>
-        <link rel="alternate" href="https://cypressen.github.io/test/test1/"/>
-        <content type="html">&lt;p&gt;我们做一个简单的测试&lt;br /&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/background.png&#34; alt=&#34;使用插件引入的图片&#34; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;无序&lt;/li&gt;
-&lt;li&gt;无序&lt;/li&gt;
-&lt;li&gt;ok
-&lt;ul&gt;
-&lt;li&gt;ok&lt;/li&gt;
-&lt;li&gt;okk&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;引入一个一级标题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#引入一个一级标题&#34;&gt;#&lt;/a&gt; 引入一个一级标题&lt;/h1&gt;
-&lt;p&gt;这是正文&lt;/p&gt;
-</content>
-        <category term="test" scheme="https://cypressen.github.io/categories/test/" />
-        <category term="MarkDown" scheme="https://cypressen.github.io/tags/MarkDown/" />
-        <category term="c++" scheme="https://cypressen.github.io/tags/c/" />
-        <updated>2024-02-19T15:33:22.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://cypressen.github.io/test/test4/</id>
-        <title>test4</title>
-        <link rel="alternate" href="https://cypressen.github.io/test/test4/"/>
-        <content type="html">&lt;p&gt;第四个测试&lt;br /&gt;
-测试卡片&lt;/p&gt;
-</content>
-        <category term="test" scheme="https://cypressen.github.io/categories/test/" />
-        <category term="tag6" scheme="https://cypressen.github.io/tags/tag6/" />
-        <updated>2024-02-19T15:33:22.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://cypressen.github.io/test/test2/</id>
-        <title>test2</title>
-        <link rel="alternate" href="https://cypressen.github.io/test/test2/"/>
-        <content type="html">&lt;p&gt;第二个测试&lt;/p&gt;
-</content>
-        <category term="test" scheme="https://cypressen.github.io/categories/test/" />
-        <category term="tag1" scheme="https://cypressen.github.io/tags/tag1/" />
-        <updated>2024-02-19T15:33:22.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://cypressen.github.io/test/test3/</id>
-        <title>test3</title>
-        <link rel="alternate" href="https://cypressen.github.io/test/test3/"/>
-        <content type="html">&lt;p&gt;第三个测试&lt;/p&gt;
-</content>
-        <category term="test" scheme="https://cypressen.github.io/categories/test/" />
-        <category term="tag2" scheme="https://cypressen.github.io/tags/tag2/" />
-        <updated>2024-02-19T15:33:22.000Z</updated>
     </entry>
 </feed>
