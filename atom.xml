@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cypressen.github.io</id>
     <title>サイプレス</title>
-    <subtitle>ww</subtitle>
+    <subtitle></subtitle>
     <icon>https://cypressen.github.io/assets/favicon.ico</icon>
     <link href="https://cypressen.github.io" />
     <author>

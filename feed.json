@@ -1,9 +1,9 @@
 {
     "version": "https://jsonfeed.org/version/1",
     "title": "サイプレス",
-    "subtitle": "ww",
+    "subtitle": "",
     "icon": "https://cypressen.github.io/assets/favicon.ico",
-    "description": "record",
+    "description": "",
     "home_page_url": "https://cypressen.github.io",
     "items": [
         {
