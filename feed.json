@@ -7,6 +7,18 @@
     "home_page_url": "https://cypressen.github.io",
     "items": [
         {
+            "id": "https://cypressen.github.io/shokax/shokaxLog/shokax-log-3/",
+            "url": "https://cypressen.github.io/shokax/shokaxLog/shokax-log-3/",
+            "title": "[shokax]log_3",
+            "date_published": "2024-02-23T09:21:29.000Z",
+            "content_html": "<h1 id=\"活动\"><a class=\"anchor\" href=\"#活动\">#</a> 活动</h1>\n<ul>\n<li>algolia 同步问题解决\n<ul>\n<li>在 <code>hexo d</code>  前要 <code>hexo algolia</code>  向服务器上传索引</li>\n</ul>\n</li>\n<li>音乐盒歌单的超链不同步替代方案\n<ul>\n<li>单曲链接替代</li>\n</ul>\n</li>\n<li>完成评论系统\n<ul>\n<li><code>LeanCloud</code>  数据库部署到 <code>Vercel</code>  服务端 + <code>Waline</code>\n<ul>\n<li>log_2 的问题是因为 <code>MongoDB</code>  部署到 <code>Zeabur</code>  不知配置怎样的环境变量，对于 <code>LeanCloud</code>  deploy to  <code>Vercel</code> ，环境变量的配置简单的多</li>\n</ul>\n</li>\n<li>设置了 QQ 邮箱通知回复</li>\n</ul>\n</li>\n</ul>\n<h1 id=\"关注的问题\"><a class=\"anchor\" href=\"#关注的问题\">#</a> 关注的问题</h1>\n<ul>\n<li>网站的速度优化</li>\n</ul>\n",
+            "tags": [
+                "shokax",
+                "shokaXlog",
+                "log"
+            ]
+        },
+        {
             "id": "https://cypressen.github.io/shokax/shokaxLog/shokax-log-2/",
             "url": "https://cypressen.github.io/shokax/shokaxLog/shokax-log-2/",
             "title": "[shokax]log_2",

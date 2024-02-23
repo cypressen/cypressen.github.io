@@ -10,8 +10,45 @@
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Thu, 22 Feb 2024 13:05:29 +0800</pubDate>
-        <lastBuildDate>Thu, 22 Feb 2024 13:05:29 +0800</lastBuildDate>
+        <pubDate>Fri, 23 Feb 2024 17:21:29 +0800</pubDate>
+        <lastBuildDate>Fri, 23 Feb 2024 17:21:29 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://cypressen.github.io/shokax/shokaxLog/shokax-log-3/</guid>
+            <title>[shokax]log_3</title>
+            <link>https://cypressen.github.io/shokax/shokaxLog/shokax-log-3/</link>
+            <category term="shokax" scheme="https://cypressen.github.io/categories/shokax/" />
+            <category term="shokaXlog" scheme="https://cypressen.github.io/categories/shokax/shokaXlog/" />
+            <category term="log" scheme="https://cypressen.github.io/tags/log/" />
+            <pubDate>Fri, 23 Feb 2024 17:21:29 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;活动&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#活动&#34;&gt;#&lt;/a&gt; 活动&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;algolia 同步问题解决
+&lt;ul&gt;
+&lt;li&gt;在 &lt;code&gt;hexo d&lt;/code&gt;  前要 &lt;code&gt;hexo algolia&lt;/code&gt;  向服务器上传索引&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;音乐盒歌单的超链不同步替代方案
+&lt;ul&gt;
+&lt;li&gt;单曲链接替代&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;完成评论系统
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;LeanCloud&lt;/code&gt;  数据库部署到 &lt;code&gt;Vercel&lt;/code&gt;  服务端 + &lt;code&gt;Waline&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;log_2 的问题是因为 &lt;code&gt;MongoDB&lt;/code&gt;  部署到 &lt;code&gt;Zeabur&lt;/code&gt;  不知配置怎样的环境变量，对于 &lt;code&gt;LeanCloud&lt;/code&gt;  deploy to  &lt;code&gt;Vercel&lt;/code&gt; ，环境变量的配置简单的多&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;设置了 QQ 邮箱通知回复&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;关注的问题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#关注的问题&#34;&gt;#&lt;/a&gt; 关注的问题&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;网站的速度优化&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://cypressen.github.io/shokax/shokaxLog/shokax-log-2/</guid>
             <title>[shokax]log_2</title>
