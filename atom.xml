@@ -17,8 +17,10 @@
 &lt;p&gt;我的 CS61B 的课程学习于 2024/3/14 开始，这是 Week 1 的学习报告。&lt;/p&gt;
 &lt;p&gt;主要为个人的知识记录和理解，有引用的官方教案的原文。&lt;/p&gt;
 &lt;p&gt;个人感觉 Week 1 的核心，体现在编程上就是分治思想了。&lt;/p&gt;
-&lt;p&gt;代码供交流，若有问题可以向我发送邮件，当然，可以于底部评论（如果你可以的话），我也会收到邮件信息。&lt;br /&gt;
-在阅读这篇博文之前，你或许需要做一次 proj0&lt;/p&gt;
+&lt;p&gt;代码供交流，若有问题可以向我发送邮件，当然，可以于底部评论（如果你可以的话），我也会收到邮件信息。&lt;/p&gt;
+&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;在阅读这篇博文之前，你或许需要做一次 proj0&lt;/p&gt;
+&lt;/div&gt;
 &lt;h1 id=&#34;类组合&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#类组合&#34;&gt;#&lt;/a&gt; 类组合&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/acktomas/article/details/115550704&#34;&gt;C++ 实例：类的组合，即在一个类中包含另一个类的对象&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;java&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#java&#34;&gt;#&lt;/a&gt; Java&lt;/h2&gt;
