@@ -7,6 +7,18 @@
     "home_page_url": "https://cypressen.github.io",
     "items": [
         {
+            "id": "https://cypressen.github.io/shokax/shokaxLog/shokax-log-4/",
+            "url": "https://cypressen.github.io/shokax/shokaxLog/shokax-log-4/",
+            "title": "[shokax]log_4 [踩坑]本地图片部署后显示异常",
+            "date_published": "2024-03-29T06:38:29.000Z",
+            "content_html": "<h1 id=\"intro\"><a class=\"anchor\" href=\"#intro\">#</a> Intro</h1>\n<p>在我尝试将<a href=\"https://cypressen.github.io/CS/CS61B/CS61B-SP21-Week3-report\"> [CS61B_SP21] Week3_report</a> 部署到 github 上，发现最后网站上的所有本地图片（头像、文章内引用的本地图片等等）全部无法显示。<br />\n当我在本地将该篇 md 移出文件夹的时候再部署，却发现本地图片又能正常显示。<br />\n于是乎我花了大概 3 个小时，才明白这到底是怎么一回事。</p>\n<p>直接跳转到结论<a href=\"#%E6%80%9D%E8%80%83%E7%9B%B4%E6%8E%A5%E5%8E%9F%E5%9B%A0\">思考直接原因</a></p>\n<h1 id=\"experience\"><a class=\"anchor\" href=\"#experience\">#</a> Experience</h1>\n<h2 id=\"repo快要满了吗\"><a class=\"anchor\" href=\"#repo快要满了吗\">#</a> repo 快要满了吗？</h2>\n<p>我首先想的是库的大小是不是已经超过了限制。因为在我不选择添加新的文章的时候能正常显示图片。</p>\n<blockquote>\n<p>目前我对 github 的工作还是很陌生的</p>\n</blockquote>\n<p>所以我在网上查找了 &quot;如何知道库的大小&quot; &quot;如何给库瘦身&quot;<br />\n 但搜索出来的方法一是我看的迷糊，二是我不敢做。<br />\n但我还是尝试了一个多小时。在了解我的库大小还绰绰有余的时候我开始怀疑问题不在这。</p>\n<h2 id=\"是hexo的问题\"><a class=\"anchor\" href=\"#是hexo的问题\">#</a> 是 hexo 的问题？</h2>\n<p>但我依旧没有跳出 <code>大小</code> 的问题，先是关联了 hexo 再搜索关于大小的问题，再是检查图片资源的路径问题。<br />\n在这又费了部分时间。</p>\n<p>不过好在，这里我思考了路径的问题。</p>\n<h2 id=\"思考直接原因\"><a class=\"anchor\" href=\"#思考直接原因\">#</a> 思考直接原因</h2>\n<p>在频繁试错后我破防了，破防后才知道冷静思考。</p>\n<p>图片显示不出来，在 html 上的体现就是图片的链接有问题，于是我在库中去找到文章的 index.html<br />\n<img loading=\"lazy\" data-src=\"/pic/shokax/log_4/1.png\" alt=\"\" /><br />\n 可以看到图片的格式是 <code>.webp</code> ，于是我在库中找到对应目录，发现并没有 <code>.webp</code>  的图片，仅有 <code>.png</code>  的图片。<br />\n<img loading=\"lazy\" data-src=\"/pic/shokax/log_4/2.png\" alt=\"\" /><br />\n至此，我恍然大悟。<br />\n问题果真不在大小，在于图片链接错误。<br />\n所以，链接的格式为什么会是 <code>.webp</code>  而不是 <code>.png</code>  呢？<br />\n我突然想到，在 <code>_config.yml</code>  文件下有个自动将图片处理成 <code>.webp</code>  格式的配置<br />\n<img loading=\"lazy\" data-src=\"/pic/shokax/log_4/3.png\" alt=\"\" /><br />\n我将 <code>enable: true</code>  配置为 <code>false</code>  的时候，最后所有图片能在网站上正常显示了。<br />\n花了近 3 个小时，问题竟在这长度不达 20 的字符串中。</p>\n<p>最后在官方给的配置教程中发现了这么一句话。<br />\n<img loading=\"lazy\" data-src=\"/pic/shokax/log_4/4.png\" alt=\"\" /><br />\n也就是，要使用两次 <code>hexo g</code>  才能将图片转化成 <code>webp</code>  格式。而在平时我自然地只是用一次 <code>hexo g</code> 。</p>\n<blockquote>\n<p>至于为什么要用 <code>webp</code> ，使用 <code>webp</code>  可以使图片资源加载更快</p>\n</blockquote>\n<p>结案了。</p>\n<blockquote>\n<p>至于为什么在我移除新添的文件后能够正常显示图片，那是因为我在移除之后我习惯性地又一次 <code>hexo g</code>  了，这时候就成功自动 webp 化了</p>\n</blockquote>\n",
+            "tags": [
+                "shokax",
+                "shokaXlog",
+                "log"
+            ]
+        },
+        {
             "id": "https://cypressen.github.io/CS/CS61B/CS61B-SP21-Week3-report/",
             "url": "https://cypressen.github.io/CS/CS61B/CS61B-SP21-Week3-report/",
             "title": "[CS61B_SP21]Week3_report",
