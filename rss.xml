@@ -10,59 +10,8 @@
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Fri, 29 Mar 2024 14:38:29 +0800</pubDate>
-        <lastBuildDate>Fri, 29 Mar 2024 14:38:29 +0800</lastBuildDate>
-        <item>
-            <guid isPermalink="true">https://cypressen.github.io/shokax/shokaxLog/shokax-log-4/</guid>
-            <title>[shokax]log_4 [踩坑]本地图片部署后显示异常</title>
-            <link>https://cypressen.github.io/shokax/shokaxLog/shokax-log-4/</link>
-            <category term="shokax" scheme="https://cypressen.github.io/categories/shokax/" />
-            <category term="shokaXlog" scheme="https://cypressen.github.io/categories/shokax/shokaXlog/" />
-            <category term="log" scheme="https://cypressen.github.io/tags/log/" />
-            <pubDate>Fri, 29 Mar 2024 14:38:29 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;intro&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#intro&#34;&gt;#&lt;/a&gt; Intro&lt;/h1&gt;
-&lt;p&gt;在我尝试将&lt;a href=&#34;https://cypressen.github.io/CS/CS61B/CS61B-SP21-Week3-report&#34;&gt; [CS61B_SP21] Week3_report&lt;/a&gt; 部署到 github 上，发现最后网站上的所有本地图片（头像、文章内引用的本地图片等等）全部无法显示。&lt;br /&gt;
-当我在本地将该篇 md 移出文件夹的时候再部署，却发现本地图片又能正常显示。&lt;br /&gt;
-于是乎我花了大概 3 个小时，才明白这到底是怎么一回事。&lt;/p&gt;
-&lt;p&gt;直接跳转到结论&lt;a href=&#34;#%E6%80%9D%E8%80%83%E7%9B%B4%E6%8E%A5%E5%8E%9F%E5%9B%A0&#34;&gt;思考直接原因&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;experience&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#experience&#34;&gt;#&lt;/a&gt; Experience&lt;/h1&gt;
-&lt;h2 id=&#34;repo快要满了吗&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#repo快要满了吗&#34;&gt;#&lt;/a&gt; repo 快要满了吗？&lt;/h2&gt;
-&lt;p&gt;我首先想的是库的大小是不是已经超过了限制。因为在我不选择添加新的文章的时候能正常显示图片。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;目前我对 github 的工作还是很陌生的&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;所以我在网上查找了 &amp;quot;如何知道库的大小&amp;quot; &amp;quot;如何给库瘦身&amp;quot;&lt;br /&gt;
- 但搜索出来的方法一是我看的迷糊，二是我不敢做。&lt;br /&gt;
-但我还是尝试了一个多小时。在了解我的库大小还绰绰有余的时候我开始怀疑问题不在这。&lt;/p&gt;
-&lt;h2 id=&#34;是hexo的问题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#是hexo的问题&#34;&gt;#&lt;/a&gt; 是 hexo 的问题？&lt;/h2&gt;
-&lt;p&gt;但我依旧没有跳出 &lt;code&gt;大小&lt;/code&gt; 的问题，先是关联了 hexo 再搜索关于大小的问题，再是检查图片资源的路径问题。&lt;br /&gt;
-在这又费了部分时间。&lt;/p&gt;
-&lt;p&gt;不过好在，这里我思考了路径的问题。&lt;/p&gt;
-&lt;h2 id=&#34;思考直接原因&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#思考直接原因&#34;&gt;#&lt;/a&gt; 思考直接原因&lt;/h2&gt;
-&lt;p&gt;在频繁试错后我破防了，破防后才知道冷静思考。&lt;/p&gt;
-&lt;p&gt;图片显示不出来，在 html 上的体现就是图片的链接有问题，于是我在库中去找到文章的 index.html&lt;br /&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/shokax/log_4/1.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
- 可以看到图片的格式是 &lt;code&gt;.webp&lt;/code&gt; ，于是我在库中找到对应目录，发现并没有 &lt;code&gt;.webp&lt;/code&gt;  的图片，仅有 &lt;code&gt;.png&lt;/code&gt;  的图片。&lt;br /&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/shokax/log_4/2.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
-至此，我恍然大悟。&lt;br /&gt;
-问题果真不在大小，在于图片链接错误。&lt;br /&gt;
-所以，链接的格式为什么会是 &lt;code&gt;.webp&lt;/code&gt;  而不是 &lt;code&gt;.png&lt;/code&gt;  呢？&lt;br /&gt;
-我突然想到，在 &lt;code&gt;_config.yml&lt;/code&gt;  文件下有个自动将图片处理成 &lt;code&gt;.webp&lt;/code&gt;  格式的配置&lt;br /&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/shokax/log_4/3.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
-我将 &lt;code&gt;enable: true&lt;/code&gt;  配置为 &lt;code&gt;false&lt;/code&gt;  的时候，最后所有图片能在网站上正常显示了。&lt;br /&gt;
-花了近 3 个小时，问题竟在这长度不达 20 的字符串中。&lt;/p&gt;
-&lt;p&gt;最后在官方给的配置教程中发现了这么一句话。&lt;br /&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/shokax/log_4/4.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
-也就是，要使用两次 &lt;code&gt;hexo g&lt;/code&gt;  才能将图片转化成 &lt;code&gt;webp&lt;/code&gt;  格式。而在平时我自然地只是用一次 &lt;code&gt;hexo g&lt;/code&gt; 。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;至于为什么要用 &lt;code&gt;webp&lt;/code&gt; ，使用 &lt;code&gt;webp&lt;/code&gt;  可以使图片资源加载更快&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;结案了。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;至于为什么在我移除新添的文件后能够正常显示图片，那是因为我在移除之后我习惯性地又一次 &lt;code&gt;hexo g&lt;/code&gt;  了，这时候就成功自动 webp 化了&lt;/p&gt;
-&lt;/blockquote&gt;
- ]]></description>
-        </item>
+        <pubDate>Sun, 07 Apr 2024 17:03:16 +0800</pubDate>
+        <lastBuildDate>Sun, 07 Apr 2024 17:03:16 +0800</lastBuildDate>
         <item>
             <guid isPermalink="true">https://cypressen.github.io/CS/CS61B/CS61B-SP21-Week3-report/</guid>
             <title>[CS61B_SP21]Week3_report</title>
@@ -72,8 +21,17 @@
             <category term="java" scheme="https://cypressen.github.io/tags/java/" />
             <category term="CS61B" scheme="https://cypressen.github.io/tags/CS61B/" />
             <category term="learningReport" scheme="https://cypressen.github.io/tags/learningReport/" />
-            <pubDate>Mon, 25 Mar 2024 19:48:24 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;lecture-6-dllists-arrays&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#lecture-6-dllists-arrays&#34;&gt;#&lt;/a&gt; Lecture 6. DLLists, Arrays&lt;/h1&gt;
+            <pubDate>Sun, 07 Apr 2024 17:03:16 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;intro&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#intro&#34;&gt;#&lt;/a&gt; Intro&lt;/h1&gt;
+&lt;p&gt;由于最近学校的事开始边忙，该课程的学习进度可能会变缓。&lt;/p&gt;
+&lt;p&gt;这篇报告我花了两周完成。篇幅相当大。同时伴随了一篇关于博客网站的踩坑分享&lt;a href=&#34;https://cypressen.github.io/shokax/shokaxLog/shokax-log-4&#34;&gt; [shokax] log_4 [踩坑] 本地图片部署后显示异常&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Suggest&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#lecture-8-inheritance-implements&#34;&gt;Lec 8&lt;/a&gt; 关于继承&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;lecture-6-dllists-arrays&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#lecture-6-dllists-arrays&#34;&gt;#&lt;/a&gt; Lecture 6. DLLists, Arrays&lt;/h1&gt;
 &lt;h2 id=&#34;dllists&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#dllists&#34;&gt;#&lt;/a&gt; DLLists&lt;/h2&gt;
 &lt;p&gt;反思在上一周编写的链表。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -482,6 +440,21 @@
 &lt;p&gt;这里贴出最后找到问题的 JUnit 测试&lt;/p&gt;
 &lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@Test&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;randomizedTest&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token class-name&#34;&gt;AListNoResizing&lt;/span&gt;&lt;span class=&#34;token generics&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;L&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;AListNoResizing&lt;/span&gt;&lt;span class=&#34;token generics&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token class-name&#34;&gt;BuggyAList&lt;/span&gt;&lt;span class=&#34;token generics&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt; cmp &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;BuggyAList&lt;/span&gt;&lt;span class=&#34;token generics&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;N&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;5000&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; operationNumber &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;StdRandom&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;uniform&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;operationNumber &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token comment&#34;&gt;// addLast&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; randVal &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;StdRandom&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;uniform&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token class-name&#34;&gt;L&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;addLast&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;randVal&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                cmp&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;addLast&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;randVal&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;operationNumber &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token comment&#34;&gt;// size&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; sizeL &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;L&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; sizeCmp &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; cmp&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token function&#34;&gt;assertEquals&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;sizeL&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;sizeCmp&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;operationNumber &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token comment&#34;&gt;// getLast&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;L&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;L&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; cmp&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                    &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; valL &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;L&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getLast&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                    &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; valCmp &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; cmp&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getLast&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                    &lt;span class=&#34;token function&#34;&gt;assertEquals&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;valL&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;valCmp&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;operationNumber &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token comment&#34;&gt;// removeLast&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;L&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;L&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; cmp&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                    &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; valL &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;L&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;removeLast&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                    &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; valCmp &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; cmp&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;removeLast&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                    &lt;span class=&#34;token function&#34;&gt;assertEquals&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;valL&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;valCmp&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;35&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;然后仅需修改 BuggyAList 中的一小点。&lt;/p&gt;
 &lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;span&gt;BuggyAList&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Item&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;removeLast&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;size &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; items&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;length &lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;size &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token function&#34;&gt;resize&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;items&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;length &lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token class-name&#34;&gt;Item&lt;/span&gt; x &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;getLast&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        items&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;size &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        size &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; size &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; x&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;proj-1&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#proj-1&#34;&gt;#&lt;/a&gt; Proj 1&lt;/h1&gt;
+&lt;h2 id=&#34;intro-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#intro-2&#34;&gt;#&lt;/a&gt; Intro&lt;/h2&gt;
+&lt;p&gt;因为在这个时间段我比较忙碌，此次作业我利用了比较散的时间完成。&lt;/p&gt;
+&lt;p&gt;官方给的作业文档对我来说有点理解困难，尤其是 &lt;code&gt;equals&lt;/code&gt;  方法和 &lt;code&gt;Iterator&lt;/code&gt;  相关的知识。对于我这种 Java 就是跟着该课程学习的来说，对这两个知识点是一头雾水的。&lt;/p&gt;
+&lt;p&gt;所以，我也花了相当的时间去完成这项作业。跨越了三天的时间。&lt;/p&gt;
+&lt;p&gt;我的代码可以说是有点混乱。我反复修改了很多次，部分代码也是借鉴了其他人的。所以关于此部分的 &lt;code&gt;My answer&lt;/code&gt; ，我会着重分享我踩的坑，而不仅仅是贴上答案。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;你可以通过在 &lt;code&gt;github&lt;/code&gt;  上搜索 &lt;code&gt;cs61b-sp21&lt;/code&gt;  获得别人的答案。大多数可供参考。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;details class=&#34;success&#34;&gt;&lt;summary&gt;于Apr 4开始提交，Apr 7完成满分&lt;/summary&gt;&lt;div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;中间的一次满分是非常破防后直接提交的别人的代码。不过随后又借助满分答案修正了自己的代码&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/CS/CS61B/week3/8.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;/details&gt;
 &lt;h2 id=&#34;packages&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#packages&#34;&gt;#&lt;/a&gt; Packages&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;A package is a collection of Java classes that all work together towards some common goal. We’ve already seen packages in CS 61B without knowing it. For example,  &lt;code&gt;org.junit&lt;/code&gt;  is a package that contains various classes useful for testing, including our familiar  &lt;code&gt;Assert&lt;/code&gt;  class, which contains useful static methods like  &lt;code&gt;assertEquals&lt;/code&gt; . In other words, when we saw  &lt;code&gt;org.junit.Assert.assertEquals&lt;/code&gt; , the  &lt;code&gt;org.junit&lt;/code&gt;  was the package name,  &lt;code&gt;Assert&lt;/code&gt;  was the class name, and  &lt;code&gt;assertEquals&lt;/code&gt;  was the method name. We call  &lt;code&gt;org.junit.Assert.assertEquals&lt;/code&gt;  the “canonical name” of the method, and we call  &lt;code&gt;assertEquals&lt;/code&gt;  the “simple name” of the method.&lt;/p&gt;
@@ -495,6 +468,39 @@
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;token namespace&#34;&gt;deque&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;my-answer-3&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#my-answer-3&#34;&gt;#&lt;/a&gt; My answer&lt;/h2&gt;
+&lt;p&gt;关于具体代码，你可以通过访问我的&lt;a href=&#34;https://github.com/cypressen/cs61b&#34;&gt; cypressen/cs61b (github.com)&lt;/a&gt;，它将会更新至同学习报告的进度。&lt;/p&gt;
+&lt;p&gt;关于此次作业，我并不推荐看我的代码。（主要是懒得优化，对此次的 &lt;code&gt;proj&lt;/code&gt;  破防了很多次）&lt;/p&gt;
+&lt;p&gt;以下我将分享一些可能的困难。&lt;/p&gt;
+&lt;h3 id=&#34;linkedlistdeque&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#linkedlistdeque&#34;&gt;#&lt;/a&gt; LinkedListDeque&lt;/h3&gt;
+&lt;h4 id=&#34;sentinel&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#sentinel&#34;&gt;#&lt;/a&gt; Sentinel&lt;/h4&gt;
+&lt;p&gt;在讲座中，教授提到建议我们在 &lt;code&gt;proj 1&lt;/code&gt;  中使用双向链表，也就是循环链表。但是讲座并没有直接带我们写一遍代码，仅仅是给出了图示。&lt;/p&gt;
+&lt;p&gt;所以在设计由一个 &lt;code&gt;sentinel&lt;/code&gt;  实现的双向链表上，可能会遇到一些困难&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关于链表为空的时候， &lt;code&gt;sentinel&lt;/code&gt;  的前后指向&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这个第一次考虑是在初始化空列表的时候，最开始我设置的是两个都为 null，最后发现这并不符合不变性思想。&lt;/p&gt;
+&lt;p&gt;你可以尝试（或许你正在这么做），在设置前后都为 null 的时候，是无法避免在 &lt;code&gt;add&lt;/code&gt;  方法和 &lt;code&gt;remove&lt;/code&gt;  方法去多写一条 if。&lt;/p&gt;
+&lt;p&gt;正确的则是，它应该是个闭环，所以在空列表的时候， &lt;code&gt;sentinel&lt;/code&gt;  的前后指向为 &lt;code&gt;sentinel&lt;/code&gt;  本身。&lt;/p&gt;
+&lt;p&gt;你如果在此遇上困难，建议借助图画。&lt;/p&gt;
+&lt;h3 id=&#34;arraydeque&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#arraydeque&#34;&gt;#&lt;/a&gt; ArrayDeque&lt;/h3&gt;
+&lt;h4 id=&#34;arraydequetest&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#arraydequetest&#34;&gt;#&lt;/a&gt; ArrayDequeTest&lt;/h4&gt;
+&lt;p&gt;我们需要一个 &lt;code&gt;ArrayDequeTest&lt;/code&gt;  文件，或许你借官方文档注意到了这点。但我当时对是否要增加这样的文件是有点疑惑的。&lt;/p&gt;
+&lt;p&gt;事实上，在我做完所有的事后，发现 Test 真的很重要，对于自己写的绝大部分类，都有专门附上一个 Test 文件的必要。&lt;/p&gt;
+&lt;h4 id=&#34;resize&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#resize&#34;&gt;#&lt;/a&gt; Resize&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;resize&lt;/code&gt;  方法，在 &lt;code&gt;check point&lt;/code&gt;  之前文档没有叫我们去实现 &lt;code&gt;resize&lt;/code&gt;  方法，但是在最后是需要该方法的，尽管官方文档并没有明确指出。&lt;/p&gt;
+&lt;p&gt;包括 &lt;code&gt;equals&lt;/code&gt;  和 &lt;code&gt;Iterator&lt;/code&gt;  也是如此。&lt;/p&gt;
+&lt;p&gt;受此提醒，你或许重新审视自己所完成的内容，是否会有残缺。&lt;/p&gt;
+&lt;h3 id=&#34;maxarraydeque&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#maxarraydeque&#34;&gt;#&lt;/a&gt; MaxArrayDeque&lt;/h3&gt;
+&lt;p&gt;关于关键字 &lt;code&gt;extends&lt;/code&gt; ，在我的印象中，讲座似乎没有涉及这个关键字。在 &lt;code&gt;lec 8&lt;/code&gt;  中，似乎没有出现。&lt;/p&gt;
+&lt;h4 id=&#34;comparator&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#comparator&#34;&gt;#&lt;/a&gt; Comparator&lt;/h4&gt;
+&lt;p&gt;对于我这种 Java 跟着课程走的来说， &lt;code&gt;comparator&lt;/code&gt;  也是陌生的。在这个时候就必须借助 &lt;code&gt;gogle&lt;/code&gt;  或其他人的代码了。&lt;/p&gt;
+&lt;p&gt;在你了解了知识点后，或许对在作业中的实现还是无从下手的情况下，建议去看看别人的代码，或与他人交流（如果有的话）。&lt;/p&gt;
+&lt;h4 id=&#34;test&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#test&#34;&gt;#&lt;/a&gt; Test&lt;/h4&gt;
+&lt;p&gt;当然，你也要同 &lt;code&gt;ArrayDeque&lt;/code&gt;  一样，为此写 Test。&lt;/p&gt;
+&lt;h3 id=&#34;autograder&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#autograder&#34;&gt;#&lt;/a&gt; AutoGrader&lt;/h3&gt;
+&lt;p&gt;在提交评测期间，我依赖了 &lt;code&gt;AutoGrader&lt;/code&gt;  的评测系统（课程并不建议这么做），我这么做是因为我低效地使用评测后的报错信息。&lt;/p&gt;
+&lt;p&gt;也就是，在我没有拿到满分的时候我没去关注报错信息，选择的是直接复制报错到搜索栏上，而没有主动去看报错信息的甚至一个单词。这是错误的！！&lt;/p&gt;
+&lt;p&gt;你应该做的是，借给出的异常信息做出针对修改。当然，你也可以选择为自己写一个 &lt;code&gt;AutoGrader&lt;/code&gt; ，但这也是相当花费精力的（需要考量多种情况，这会令人头疼）。&lt;/p&gt;
+&lt;p&gt;高效地使用报错信息会快速的帮助你修改代码。&lt;/p&gt;
 &lt;h1 id=&#34;vocabulary&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#vocabulary&#34;&gt;#&lt;/a&gt; VOCABULARY&lt;/h1&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -557,6 +563,57 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://cypressen.github.io/shokax/shokaxLog/shokax-log-4/</guid>
+            <title>[shokax]log_4 [踩坑]本地图片部署后显示异常</title>
+            <link>https://cypressen.github.io/shokax/shokaxLog/shokax-log-4/</link>
+            <category term="shokax" scheme="https://cypressen.github.io/categories/shokax/" />
+            <category term="shokaXlog" scheme="https://cypressen.github.io/categories/shokax/shokaXlog/" />
+            <category term="log" scheme="https://cypressen.github.io/tags/log/" />
+            <pubDate>Fri, 29 Mar 2024 14:38:29 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;intro&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#intro&#34;&gt;#&lt;/a&gt; Intro&lt;/h1&gt;
+&lt;p&gt;在我尝试将&lt;a href=&#34;https://cypressen.github.io/CS/CS61B/CS61B-SP21-Week3-report&#34;&gt; [CS61B_SP21] Week3_report&lt;/a&gt; 部署到 github 上，发现最后网站上的所有本地图片（头像、文章内引用的本地图片等等）全部无法显示。&lt;br /&gt;
+当我在本地将该篇 md 移出文件夹的时候再部署，却发现本地图片又能正常显示。&lt;br /&gt;
+于是乎我花了大概 3 个小时，才明白这到底是怎么一回事。&lt;/p&gt;
+&lt;p&gt;直接跳转到结论&lt;a href=&#34;#%E6%80%9D%E8%80%83%E7%9B%B4%E6%8E%A5%E5%8E%9F%E5%9B%A0&#34;&gt;思考直接原因&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;experience&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#experience&#34;&gt;#&lt;/a&gt; Experience&lt;/h1&gt;
+&lt;h2 id=&#34;repo快要满了吗&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#repo快要满了吗&#34;&gt;#&lt;/a&gt; repo 快要满了吗？&lt;/h2&gt;
+&lt;p&gt;我首先想的是库的大小是不是已经超过了限制。因为在我不选择添加新的文章的时候能正常显示图片。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;目前我对 github 的工作还是很陌生的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;所以我在网上查找了 &amp;quot;如何知道库的大小&amp;quot; &amp;quot;如何给库瘦身&amp;quot;&lt;br /&gt;
+ 但搜索出来的方法一是我看的迷糊，二是我不敢做。&lt;br /&gt;
+但我还是尝试了一个多小时。在了解我的库大小还绰绰有余的时候我开始怀疑问题不在这。&lt;/p&gt;
+&lt;h2 id=&#34;是hexo的问题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#是hexo的问题&#34;&gt;#&lt;/a&gt; 是 hexo 的问题？&lt;/h2&gt;
+&lt;p&gt;但我依旧没有跳出 &lt;code&gt;大小&lt;/code&gt; 的问题，先是关联了 hexo 再搜索关于大小的问题，再是检查图片资源的路径问题。&lt;br /&gt;
+在这又费了部分时间。&lt;/p&gt;
+&lt;p&gt;不过好在，这里我思考了路径的问题。&lt;/p&gt;
+&lt;h2 id=&#34;思考直接原因&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#思考直接原因&#34;&gt;#&lt;/a&gt; 思考直接原因&lt;/h2&gt;
+&lt;p&gt;在频繁试错后我破防了，破防后才知道冷静思考。&lt;/p&gt;
+&lt;p&gt;图片显示不出来，在 html 上的体现就是图片的链接有问题，于是我在库中去找到文章的 index.html&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/shokax/log_4/1.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+ 可以看到图片的格式是 &lt;code&gt;.webp&lt;/code&gt; ，于是我在库中找到对应目录，发现并没有 &lt;code&gt;.webp&lt;/code&gt;  的图片，仅有 &lt;code&gt;.png&lt;/code&gt;  的图片。&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/shokax/log_4/2.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+至此，我恍然大悟。&lt;br /&gt;
+问题果真不在大小，在于图片链接错误。&lt;br /&gt;
+所以，链接的格式为什么会是 &lt;code&gt;.webp&lt;/code&gt;  而不是 &lt;code&gt;.png&lt;/code&gt;  呢？&lt;br /&gt;
+我突然想到，在 &lt;code&gt;_config.yml&lt;/code&gt;  文件下有个自动将图片处理成 &lt;code&gt;.webp&lt;/code&gt;  格式的配置&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/shokax/log_4/3.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+我将 &lt;code&gt;enable: true&lt;/code&gt;  配置为 &lt;code&gt;false&lt;/code&gt;  的时候，最后所有图片能在网站上正常显示了。&lt;br /&gt;
+花了近 3 个小时，问题竟在这长度不达 20 的字符串中。&lt;/p&gt;
+&lt;p&gt;最后在官方给的配置教程中发现了这么一句话。&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/shokax/log_4/4.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+也就是，要使用两次 &lt;code&gt;hexo g&lt;/code&gt;  才能将图片转化成 &lt;code&gt;webp&lt;/code&gt;  格式。而在平时我自然地只是用一次 &lt;code&gt;hexo g&lt;/code&gt; 。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;至于为什么要用 &lt;code&gt;webp&lt;/code&gt; ，使用 &lt;code&gt;webp&lt;/code&gt;  可以使图片资源加载更快&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;结案了。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;至于为什么在我移除新添的文件后能够正常显示图片，那是因为我在移除之后我习惯性地又一次 &lt;code&gt;hexo g&lt;/code&gt;  了，这时候就成功自动 webp 化了&lt;/p&gt;
+&lt;/blockquote&gt;
  ]]></description>
         </item>
         <item>
