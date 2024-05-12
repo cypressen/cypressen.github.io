@@ -63,7 +63,127 @@
         <category term="CS61B" scheme="https://cypressen.github.io/categories/CS/CS61B/" />
         <category term="java" scheme="https://cypressen.github.io/tags/java/" />
         <category term="CS61B" scheme="https://cypressen.github.io/tags/CS61B/" />
-        <category term="learningReport" scheme="https://cypressen.github.io/tags/learningReport/" />
+        <updated>2024-05-02T13:52:55.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://cypressen.github.io/CS/CS61B/CS61B-SP21-Week7-report/</id>
+        <title>[CS61B_SP21]Week7_report</title>
+        <link rel="alternate" href="https://cypressen.github.io/CS/CS61B/CS61B-SP21-Week7-report/"/>
+        <content type="html">&lt;h1 id=&#34;lecture-17-b-trees-2-3-2-3-4-trees&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#lecture-17-b-trees-2-3-2-3-4-trees&#34;&gt;#&lt;/a&gt; Lecture 17. B-Trees (2-3, 2-3-4 Trees)&lt;/h1&gt;
+&lt;h2 id=&#34;bst-height-and-the-useful-big-o&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#bst-height-and-the-useful-big-o&#34;&gt;#&lt;/a&gt; BST Height and The Useful BIG O&lt;/h2&gt;
+&lt;p&gt;BST height is all four of these:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(N)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;Θ(log n)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.03588em;&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; in the best case (&amp;quot;bushy&amp;quot;).&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;Θ(N)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; in the worst case (&amp;quot;spindly&amp;quot;).&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(N^2)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.0641em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;需要注意的是 最后一条是正确的。因为 O 的意思就是 less than or equal。&lt;/p&gt;
+&lt;p&gt;bushy: bushy hair or fur is very thick. 对应树就是茂密，节点密度高&lt;/p&gt;
+&lt;p&gt;spindly: long or tall and thin, and looking weak. 对应树就是稀疏，节点密度低&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The middle two statements are more informative.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Big O is NOT mathematically the same thing as “worst case”.
+&lt;ul&gt;
+&lt;li&gt;e.g. BST heights are &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(N^2)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.0641em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, but are not quadratic in the worst case.&lt;/li&gt;
+&lt;li&gt;… but Big O often used as shorthand for “worst case”.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;quadratic: 二次&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;一般情况下，以&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(N)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 作为用来讨论最坏情况的形式。&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(N^2)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.0641em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 之类的通常不会讨论，即便它们在概念上是正确的。&lt;/p&gt;
+&lt;p&gt;所以，我们将上面列的四条再进一步简化，得到：&lt;/p&gt;
+&lt;p&gt;BST height is both of these:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;Θ(log N)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.03588em;&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; in the best case (“bushy”).&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;Θ(N)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; in the worst case (“spindly”).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;height-depth-and-performance&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#height-depth-and-performance&#34;&gt;#&lt;/a&gt; Height, Depth, and Performance&lt;/h2&gt;
+&lt;h3 id=&#34;height-and-depth&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#height-and-depth&#34;&gt;#&lt;/a&gt; Height and Depth&lt;/h3&gt;
+&lt;p&gt;Height and average depth are important properties of BSTs.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;“depth” of a node&lt;/strong&gt; is how far it is from the root, e.g. depth(g) = 2.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;“height” of a tree&lt;/strong&gt; is the depth of its deepest leaf, e.g. height(T) = 4.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;“average depth”&lt;/strong&gt; of a tree is the average depth of a tree’s nodes.
+&lt;ul&gt;
+&lt;li&gt;(&lt;strong&gt;0&lt;/strong&gt;x1 + &lt;strong&gt;1&lt;/strong&gt;x2 + &lt;strong&gt;2&lt;/strong&gt;x4 + &lt;strong&gt;3&lt;/strong&gt;x6 + &lt;strong&gt;4&lt;/strong&gt;x1)/(1+2+4+6+1) = 2.35&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/CS/CS61B/week7/1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Height and average depth determine runtimes for BST operations.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;“height” of a tree&lt;/strong&gt; determines the worst case runtime to find a node.
+&lt;ul&gt;
+&lt;li&gt;Example: Worst case is contains(s), requires 5 comparisons (height + 1).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;“average depth”&lt;/strong&gt; determines the average case runtime to find a node.
+&lt;ul&gt;
+&lt;li&gt;Example: Average case is 3.35 comparisons (average depth + 1).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以上内容提到了或许未曾了解的 **&amp;quot;average depth&amp;quot;**&lt;/p&gt;
+&lt;h2 id=&#34;performance&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#performance&#34;&gt;#&lt;/a&gt; Performance&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Average Depth.&lt;/strong&gt; If N distinct keys are inserted into a BST, the expected average depth is ~ &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;2 ln N = Θ(log N)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.6944em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.03588em;&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;​.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Thus, average runtime for contains operation is Θ(log N) on a tree built with random inserts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Tree Height.&lt;/strong&gt; If N distinct keys are inserted in random order, expected tree height is ~ 4.311 ln N &lt;a href=&#34;http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.152.1289&amp;amp;rep=rep1&amp;amp;type=pdf&#34;&gt;(see Reed, 2003)&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Thus, worst case runtime for contains operation is Θ(log N) on a tree built with random inserts.&lt;/li&gt;
+&lt;li&gt;Proof is well beyond the scope of the course (and is 27 pages long!).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: ~ is the same thing as Big Theta, but you don’t drop the multiplicative constants.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;若向一个空的 BST 随机添加数据，它的密度总会往 &amp;quot;bushy&amp;quot; 方向进行。因此，通过随机插入建立的 BST 可以说是拥有&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;Θ(log N)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.03588em;&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 的表现，但是我们并不总是依靠&lt;strong&gt;随机&lt;/strong&gt;建立 BST。&lt;/p&gt;
+&lt;p&gt;因此，为了建立 &amp;quot;bushy&amp;quot; 平衡的 BST，我们后面讲讨论其方法。&lt;/p&gt;
+&lt;h2 id=&#34;b-trees-2-3-trees-2-3-4-trees&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#b-trees-2-3-trees-2-3-4-trees&#34;&gt;#&lt;/a&gt; B-trees / 2-3 trees / 2-3-4 trees&lt;/h2&gt;
+&lt;h3 id=&#34;b-trees&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#b-trees&#34;&gt;#&lt;/a&gt; B-trees&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;B-tree&lt;/strong&gt; 需含有一个参数 L，用来指一个节点的数据数目上限。例如 L = 3，就可以有如图所示的树&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/CS/CS61B/week7/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;通过这种将一个节点变化为数组形式的方式，使得 B-tree 可以保持非常不错的平衡度。&lt;/p&gt;
+&lt;p&gt;B-trees of order L = 3 (like we used today) are also called a 2-3-4 tree or a 2-4 tree.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;“2-3-4” refers to the number of children that a node can have, e.g. a 2-3-4 tree node may have 2, 3, or 4 children.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;B-trees of order L=2 are also called a 2-3 tree.&lt;/p&gt;
+&lt;p&gt;2-3 trees 就指的是 L = 2 的 B-tree, 2-3-4 则是 L = 3。依次类推。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;The origin of &amp;quot;B-tree&amp;quot; has never been explained by the authors. As we shall see, &amp;quot;balanced,&amp;quot; &amp;quot;broad,&amp;quot; or &amp;quot;bushy&amp;quot; might apply. Others suggest that the &amp;quot;B&amp;quot; stands for Boeing. Because of his contributions, however, it seems appropriate to think of B-trees as &amp;quot;Bayer&amp;quot;-trees.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;- Douglas Corner (The Ubiquitous B-Tree)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;B-tree 是如何拥有能保持高度平衡的特性呢？&lt;/p&gt;
+&lt;h3 id=&#34;b-tree-bushiness-invariants&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#b-tree-bushiness-invariants&#34;&gt;#&lt;/a&gt; B-Tree Bushiness Invariants&lt;/h3&gt;
+&lt;p&gt;Because of the way B-Trees are constructed, we get two nice invariants:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All leaves must be the same distance from the source.&lt;/li&gt;
+&lt;li&gt;A non-leaf node with k items must have exactly k+1 children.&lt;/li&gt;
+&lt;li&gt;Example: The tree given below is impossible.
+&lt;ul&gt;
+&lt;li&gt;Leaves ([1] and [5 6 7]) are a different distance from the source.&lt;/li&gt;
+&lt;li&gt;Non-leaf node [2 3] has two items but only only one child. Should have three children.&lt;/li&gt;
+&lt;li&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/CS/CS61B/week7/3.png&#34; alt=&#34;&#34; /&gt;注意，该树不存在如上规则下&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We have not proven these invariants rigorously, but try thinking them through.&lt;/p&gt;
+&lt;p&gt;其实思考的话，假设在 L = 3 的情况下插入数据至一个空树，在第三次插入后，它必会是一个满的节点，在进行第四次插入时，它必定会分裂（也就是将一个数据向上提，并以此数据的位置做原数组的分裂操作，分裂后的两个数组各自变化为节点，这样，一次分裂就必定会产生两个节点并且连接在被提上去的数据所属的节点下），分裂后依旧能够保证平衡。&lt;/p&gt;
+&lt;p&gt;可以通过&lt;a href=&#34;https://www.cs.usfca.edu/~galles/visualization/BTree.html&#34;&gt; This link&lt;/a&gt; 进行测试。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;略：关于讨论 B-tree runtime —— &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(log N)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.03588em;&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+        <category term="CS" scheme="https://cypressen.github.io/categories/CS/" />
+        <category term="CS61B" scheme="https://cypressen.github.io/categories/CS/CS61B/" />
+        <category term="java" scheme="https://cypressen.github.io/tags/java/" />
+        <category term="CS61B" scheme="https://cypressen.github.io/tags/CS61B/" />
         <updated>2024-05-02T13:52:55.000Z</updated>
     </entry>
     <entry>
@@ -237,7 +357,6 @@
         <category term="CS61B" scheme="https://cypressen.github.io/categories/CS/CS61B/" />
         <category term="java" scheme="https://cypressen.github.io/tags/java/" />
         <category term="CS61B" scheme="https://cypressen.github.io/tags/CS61B/" />
-        <category term="learningReport" scheme="https://cypressen.github.io/tags/learningReport/" />
         <updated>2024-04-25T06:42:22.000Z</updated>
     </entry>
     <entry>
@@ -588,7 +707,6 @@ Exception in thread &amp;quot;main&amp;quot; java.lang.IllegalArgumentException:
         <category term="CS61B" scheme="https://cypressen.github.io/categories/CS/CS61B/" />
         <category term="java" scheme="https://cypressen.github.io/tags/java/" />
         <category term="CS61B" scheme="https://cypressen.github.io/tags/CS61B/" />
-        <category term="learningReport" scheme="https://cypressen.github.io/tags/learningReport/" />
         <updated>2024-04-11T13:40:22.000Z</updated>
     </entry>
     <entry>
@@ -1141,7 +1259,6 @@ Exception in thread &amp;quot;main&amp;quot; java.lang.IllegalArgumentException:
         <category term="CS61B" scheme="https://cypressen.github.io/categories/CS/CS61B/" />
         <category term="java" scheme="https://cypressen.github.io/tags/java/" />
         <category term="CS61B" scheme="https://cypressen.github.io/tags/CS61B/" />
-        <category term="learningReport" scheme="https://cypressen.github.io/tags/learningReport/" />
         <updated>2024-04-07T09:03:16.000Z</updated>
     </entry>
     <entry>
@@ -1494,7 +1611,6 @@ b = 3
         <category term="CS61B" scheme="https://cypressen.github.io/categories/CS/CS61B/" />
         <category term="java" scheme="https://cypressen.github.io/tags/java/" />
         <category term="CS61B" scheme="https://cypressen.github.io/tags/CS61B/" />
-        <category term="learningReport" scheme="https://cypressen.github.io/tags/learningReport/" />
         <updated>2024-03-22T07:52:24.000Z</updated>
     </entry>
     <entry>
@@ -1646,7 +1762,6 @@ b = 3
         <category term="CS61B" scheme="https://cypressen.github.io/categories/CS/CS61B/" />
         <category term="java" scheme="https://cypressen.github.io/tags/java/" />
         <category term="CS61B" scheme="https://cypressen.github.io/tags/CS61B/" />
-        <category term="learningReport" scheme="https://cypressen.github.io/tags/learningReport/" />
         <updated>2024-03-17T08:52:11.000Z</updated>
     </entry>
     <entry>
