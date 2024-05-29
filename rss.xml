@@ -10,8 +10,65 @@
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Sat, 25 May 2024 21:58:55 +0800</pubDate>
-        <lastBuildDate>Sat, 25 May 2024 21:58:55 +0800</lastBuildDate>
+        <pubDate>Wed, 29 May 2024 16:27:31 +0800</pubDate>
+        <lastBuildDate>Wed, 29 May 2024 16:27:31 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://cypressen.github.io/CS/cpp/QT/Note/</guid>
+            <title>Note</title>
+            <link>https://cypressen.github.io/CS/cpp/QT/Note/</link>
+            <category term="CS" scheme="https://cypressen.github.io/categories/CS/" />
+            <category term="cpp" scheme="https://cypressen.github.io/categories/CS/cpp/" />
+            <category term="QT" scheme="https://cypressen.github.io/categories/CS/cpp/QT/" />
+            <category term="QT" scheme="https://cypressen.github.io/tags/QT/" />
+            <pubDate>Wed, 29 May 2024 16:27:31 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;stacked-widget&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#stacked-widget&#34;&gt;#&lt;/a&gt; Stacked Widget&lt;/h1&gt;
+&lt;h2 id=&#34;单窗口多页面&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#单窗口多页面&#34;&gt;#&lt;/a&gt; 单窗口多页面&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;新建一个页面。
+&lt;ul&gt;
+&lt;li&gt;新建文件，选择&lt;strong&gt; Qt 设计器界面类&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/CS/QT/Note/1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;界面模板选择&lt;strong&gt; Widget&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;其余默认 (注意修改类名，例如 &amp;quot;Page1&amp;quot;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;在主页面的 ui 设计中添加&lt;strong&gt; Stacked&lt;/strong&gt; &lt;strong&gt;Widget&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以下代码添加均在主页面类进行&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;注意！还需在 Stacked Widget 去添加页面数量&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;右键选择插入页&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/CS/QT/Note/3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;进入主页面类的头文件&lt;/li&gt;
+&lt;li&gt;include 新页面的头文件&lt;/li&gt;
+&lt;li&gt;添加数据成员&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/CS/QT/Note/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;然后在主页面类的源文件的构造函数中添加如下格式的代码&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Page1 &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt;p1 &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;Page1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token comment&#34;&gt;// 虽然在 private 中已经声明了 p1 变量，但这里需要这么做一次&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ui&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;stackedWidget&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;addWidget&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;p1&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这样就将新建的页面添加到主页面的&lt;strong&gt; Stacked Widget&lt;/strong&gt; 中了&lt;/p&gt;
+&lt;p&gt;通过以下代码来显示指定页面&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ui&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;stackedWidget&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setCurrentWidget&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;p1&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;同时可以获得对应页面在&lt;strong&gt; Stacked&lt;/strong&gt; &lt;strong&gt;Widget&lt;/strong&gt; 的位置&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; homeIndex &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;homeIndex &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; ui&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;stackedWidget&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;currentIndex&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;可以通过 homeIndex 来切换页面&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ui&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;stackedWidget&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setCurrentIndex&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;homeIndex &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;// 第一个页面&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ui&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;stackedWidget&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setCurrentIndex&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;homeIndex &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;// 第二个页面&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;然后实现切换页面的方法并绑定给按钮&lt;/li&gt;
+&lt;/ol&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://cypressen.github.io/CS/CS61B/CS61B-SP21-Week8-report/</guid>
             <title>[CS61B_SP21]Week8_report</title>
