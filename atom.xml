@@ -8,7 +8,150 @@
     <author>
       <name>cypress</name>
     </author>
-    <updated>2024-05-29T08:27:31.000Z</updated>
+    <updated>2024-07-26T13:00:07.000Z</updated>
+    <entry>
+        <id>https://cypressen.github.io/CS/CS61B/CS61B-SP21-Week8-report/</id>
+        <title>[CS61B_SP21]Week8_report</title>
+        <link rel="alternate" href="https://cypressen.github.io/CS/CS61B/CS61B-SP21-Week8-report/"/>
+        <content type="html">&lt;h1 id=&#34;intro&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#intro&#34;&gt;#&lt;/a&gt; Intro&lt;/h1&gt;
+&lt;p&gt;大一终于结束，终于能有事件继续跟进 CS61B 的学习。&lt;/p&gt;
+&lt;p&gt;这周的内容主要是讲了堆以及图相关的内容，其重点就是堆的概念以及图的遍历方法。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Suggest&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;#heaps&#34;&gt;Heaps&lt;/a&gt; 堆的实现&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;#dfs-in-graph&#34;&gt;DFS in graph&lt;/a&gt; 图中的深搜&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;#bfs-implementation&#34;&gt;BFS Implementation&lt;/a&gt; 图中的广搜&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;lecture-20-heaps-and-pqs&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#lecture-20-heaps-and-pqs&#34;&gt;#&lt;/a&gt; Lecture 20. Heaps and PQs&lt;/h1&gt;
+&lt;h2 id=&#34;pqs&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#pqs&#34;&gt;#&lt;/a&gt; PQs&lt;/h2&gt;
+&lt;p&gt;优先队列 Priority Queue.&lt;/p&gt;
+&lt;p&gt;其最主要的特征就是根据设置的优先规则储存数据（例如 min 或 max）&lt;/p&gt;
+&lt;p&gt;例如 MinPQ&lt;/p&gt;
+&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;/** (Min) Priority Queue: Allowing tracking and removal of the&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  * smallest item in a priority queue. */&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;MinPQ&lt;/span&gt;&lt;span class=&#34;token generics&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Item&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token comment&#34;&gt;/** Adds the item to the priority queue. */&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Item&lt;/span&gt; x&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token comment&#34;&gt;/** Returns the smallest item in the priority queue. */&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Item&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;getSmallest&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token comment&#34;&gt;/** Removes the smallest item from the priority queue. */&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Item&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;removeSmallest&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token comment&#34;&gt;/** Returns the size of the priority queue. */&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;heaps&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#heaps&#34;&gt;#&lt;/a&gt; Heaps&lt;/h2&gt;
+&lt;p&gt;** 堆 (heap)** 通常用于实现 PQ。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以下的讨论均以 Binary min-heap 为例&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;堆可以用二叉树来表示，其需要维护的特征如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每一个节点的数据都要比它的两个子节点小（min-heap 场景)&lt;/li&gt;
+&lt;li&gt;只能在最后一层缺失节点，并且所有节点都尽量向左对齐&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们将第一则称为 &lt;code&gt;Min-heap property&lt;/code&gt; ，第二则称为 &lt;code&gt;Complete property&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如下图所示：&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/CS/CS61B/week8/1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;下面将简单介绍一下如何实现 PQ 的方法&lt;/p&gt;
+&lt;h3 id=&#34;methods&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#methods&#34;&gt;#&lt;/a&gt; Methods&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;add(x)&lt;/strong&gt;: 将 x 直接添加到最后一层空缺的第一位置，随后向上比对数据大小、交换数据以维护 &lt;code&gt;Min-heap property&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;getSmallest()&lt;/strong&gt;: 直接返回 root node。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;removeSmallest()&lt;/strong&gt;: 将根节点与最后一层最后一项节点交换，然后移除交换后的最后一项（也就是之前的根节点），随后维护 Min-heap property。&lt;/p&gt;
+&lt;h2 id=&#34;tree-representations&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#tree-representations&#34;&gt;#&lt;/a&gt; Tree Representations&lt;/h2&gt;
+&lt;p&gt;可以直接以二叉树的形式实现，也可以用有序数组实现。&lt;/p&gt;
+&lt;p&gt;但最适合实现的是如下所示的数组&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/CS/CS61B/week8/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;我们将会利用该数组的元素信息和下标信息实现 heap&lt;/p&gt;
+&lt;p&gt;元素信息：节点的数据内容&lt;/p&gt;
+&lt;p&gt;下标信息：节点在数中的位置（也就是将数组中的下标映射到二叉树中）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在我看来，可以这样实现的重要前提就是堆的 &lt;code&gt;Complete property&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;那么，若想找到一个节点 (下标为 &lt;code&gt;x&lt;/code&gt; ) 的父节点，可以有如下方法&lt;/p&gt;
+&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;parent&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; index&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;index &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;index &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;假如设置数组的第二位元素 (下标 1) 为根节点那么如上的 &lt;code&gt;if(index == 0)&lt;/code&gt;  可以改为 &lt;code&gt;if(index == 1)&lt;/code&gt; ，下一条的 &lt;code&gt;return&lt;/code&gt;  同理&lt;/p&gt;
+&lt;p&gt;同样，我们也可以表示左孩和右孩&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;parent(x) = x/2&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;leftChild(x) = x*2 &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;rightChild(x) = x*2 +1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;最后，我们就用这样的 heap 实现了 PQ&lt;/p&gt;
+&lt;p&gt;得到的性能与其他数据结构对比&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/CS/CS61B/week8/3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h1 id=&#34;lecture-21-tree-and-graph-traversals&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#lecture-21-tree-and-graph-traversals&#34;&gt;#&lt;/a&gt; Lecture 21. Tree and Graph Traversals&lt;/h1&gt;
+&lt;h2 id=&#34;graph&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#graph&#34;&gt;#&lt;/a&gt; Graph&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;graph
+&lt;ul&gt;
+&lt;li&gt;vertices（a.k.a nodes):  节点&lt;/li&gt;
+&lt;li&gt;edges: 边&lt;/li&gt;
+&lt;li&gt;adjacent: 邻接&lt;/li&gt;
+&lt;li&gt;labels (or weights): 权重&lt;/li&gt;
+&lt;li&gt;path: 路&lt;/li&gt;
+&lt;li&gt;cycle: 回路&lt;/li&gt;
+&lt;li&gt;connected: 连通的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;graph-problems&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#graph-problems&#34;&gt;#&lt;/a&gt; Graph problems&lt;/h2&gt;
+&lt;h3 id=&#34;s-t-connectivity-problem&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#s-t-connectivity-problem&#34;&gt;#&lt;/a&gt; s-t Connectivity Problem&lt;/h3&gt;
+&lt;p&gt;s-t connectivity problem: 节点 s 和节点 t 是否连接&lt;br /&gt;
+考虑递归实现&lt;br /&gt;
+－ Does s == t? (the same node) If so, return true.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Otherwise, if connected(v,t) for any neighbor v of s, return true.&lt;/li&gt;
+&lt;li&gt;Return false.&lt;br /&gt;
+ 以上为最容易想到的操作，但是它存在一个问题&lt;br /&gt;
+注意第二点 &lt;strong&gt;for any neighbor v of s&lt;/strong&gt; 那么意味着，对于当前节点的邻居来说，该节点也为其邻居。也就是会重复访问同一个节点，甚至导致死循环。&lt;br /&gt;
+因此，需要标记每一个访问过的节点，根据标记信息，避免重复访问。&lt;br /&gt;
+SO&lt;/li&gt;
+&lt;li&gt;Mark s.&lt;/li&gt;
+&lt;li&gt;Does s == t? If so, return true.&lt;/li&gt;
+&lt;li&gt;Otherwise, if connected(v,t) for &lt;strong&gt;any unmarked neighbor v of s&lt;/strong&gt;, return true.&lt;/li&gt;
+&lt;li&gt;Return false.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;dfs-in-graph&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#dfs-in-graph&#34;&gt;#&lt;/a&gt; DFS in graph&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Mark v&lt;/li&gt;
+&lt;li&gt;For each unmarked adjacent vertex w:
+&lt;ul&gt;
+&lt;li&gt;set edgeTo[w] = v.&lt;/li&gt;
+&lt;li&gt;dfs(w)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如上所示的为 DFS Preorder&lt;br /&gt;
+DFS Preorder: Action is before dfs(s)&lt;br /&gt;
+DFS Postorder: Action is after dfs(s)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;bfs&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#bfs&#34;&gt;#&lt;/a&gt; BFS&lt;/h3&gt;
+&lt;p&gt;BFS stands for &amp;quot;breath first search&amp;quot;.&lt;br /&gt;
+&lt;strong&gt;Search is wide, not deep&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;summary&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#summary&#34;&gt;#&lt;/a&gt; Summary&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Tree traversals&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Preorder, inorder, postoder, level order&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Graph traversals&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DFS preorder, DFS postorder, BFS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;lecture-22-graph-traversals-and-implementations&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#lecture-22-graph-traversals-and-implementations&#34;&gt;#&lt;/a&gt; Lecture 22. Graph Traversals and Implementations&lt;/h1&gt;
+&lt;h2 id=&#34;bfs-implementation&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#bfs-implementation&#34;&gt;#&lt;/a&gt; BFS Implementation&lt;/h2&gt;
+&lt;p&gt;Problem: Find shortest path between s(start vertex) and every other vertex.&lt;br /&gt;
+process&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Initialize the fringe (a queue with a strating vertex s) and mark that vertex.&lt;/li&gt;
+&lt;li&gt;repeat untile fringe is empty:
+&lt;ul&gt;
+&lt;li&gt;Remove vertex v from fringe.&lt;/li&gt;
+&lt;li&gt;For each un marked neighbor n of v: mark n, add n to fringe, set edgTo[n] =v, set distTo[n] = distTo[v] + 1.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="CS" scheme="https://cypressen.github.io/categories/CS/" />
+        <category term="CS61B" scheme="https://cypressen.github.io/categories/CS/CS61B/" />
+        <category term="java" scheme="https://cypressen.github.io/tags/java/" />
+        <category term="CS61B" scheme="https://cypressen.github.io/tags/CS61B/" />
+        <updated>2024-07-26T13:00:07.000Z</updated>
+    </entry>
     <entry>
         <id>https://cypressen.github.io/CS/cpp/QT/Note/</id>
         <title>Note</title>
@@ -59,66 +202,31 @@
 &lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ui&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;stackedWidget&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setCurrentIndex&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;homeIndex &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;// 第一个页面&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ui&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;stackedWidget&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setCurrentIndex&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;homeIndex &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;// 第二个页面&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ol start=&#34;7&#34;&gt;
 &lt;li&gt;然后实现切换页面的方法并绑定给按钮&lt;/li&gt;
 &lt;/ol&gt;
-</content>
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;connect&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;ui&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;page1Button&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;QPushButton&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;clicked&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;MainWidget&lt;span class=&#34;token double-colon punctuation&#34;&gt;::&lt;/span&gt;toP1&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;tablewidget&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#tablewidget&#34;&gt;#&lt;/a&gt; TableWidget&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;添加行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ui&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;mainTableWidget&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;insertRow&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;POS&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;该函数实现在 POS 位置添加一行。若 POS 为 0，则在第 1 行添加一行。&lt;/p&gt;
+&lt;p&gt;在 POS 等于 0 的情况下，若在添加之前已经存在 n 行，那么这 n 行将会在执行这个函数后被推下去一行，新行将成为第一行。&lt;/p&gt;
+&lt;p&gt;可以通过如下实现在尾部添加&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; curRow &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; ui&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;mainTableWidget&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;currentRow&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    ui&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;mainTableWidget&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;insertRow&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;curRow &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
+&lt;p&gt;添加列同理&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;创建一个 &lt;code&gt;QTableWidgetItem&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;QTableWidgetItem &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; testItem &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;QTableWidgetItem&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;text&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;将 &lt;code&gt;QTableWidgetItem&lt;/code&gt;  对象添加到对应位置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ui&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;mainTableWidget&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setItem&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;testItem&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;设置指定列的宽度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ui&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;mainTableWidget&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setColumnWidth&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;200&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token comment&#34;&gt;// 第一个参数为列的位置，第二个为宽度&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
         <category term="CS" scheme="https://cypressen.github.io/categories/CS/" />
         <category term="cpp" scheme="https://cypressen.github.io/categories/CS/cpp/" />
         <category term="QT" scheme="https://cypressen.github.io/categories/CS/cpp/QT/" />
         <category term="QT" scheme="https://cypressen.github.io/tags/QT/" />
         <updated>2024-05-29T08:27:31.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://cypressen.github.io/CS/CS61B/CS61B-SP21-Week8-report/</id>
-        <title>[CS61B_SP21]Week8_report</title>
-        <link rel="alternate" href="https://cypressen.github.io/CS/CS61B/CS61B-SP21-Week8-report/"/>
-        <content type="html">&lt;h1 id=&#34;lecture-20-heaps-and-pqs&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#lecture-20-heaps-and-pqs&#34;&gt;#&lt;/a&gt; Lecture 20. Heaps and PQs&lt;/h1&gt;
-&lt;h2 id=&#34;pqs&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#pqs&#34;&gt;#&lt;/a&gt; PQs&lt;/h2&gt;
-&lt;p&gt;优先队列 Priority Queue.&lt;/p&gt;
-&lt;p&gt;其最主要的特征就是根据设置的优先规则储存数据（例如 min 或 max）&lt;/p&gt;
-&lt;p&gt;例如 MinPQ&lt;/p&gt;
-&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;/** (Min) Priority Queue: Allowing tracking and removal of the&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  * smallest item in a priority queue. */&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;MinPQ&lt;/span&gt;&lt;span class=&#34;token generics&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Item&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token comment&#34;&gt;/** Adds the item to the priority queue. */&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Item&lt;/span&gt; x&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token comment&#34;&gt;/** Returns the smallest item in the priority queue. */&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Item&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;getSmallest&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token comment&#34;&gt;/** Removes the smallest item from the priority queue. */&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Item&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;removeSmallest&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token comment&#34;&gt;/** Returns the size of the priority queue. */&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;heaps&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#heaps&#34;&gt;#&lt;/a&gt; Heaps&lt;/h2&gt;
-&lt;p&gt;** 堆 (heap)** 通常用于实现 PQ。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;以下的讨论均以 Binary min-heap 为例&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;堆可以用二叉树来表示，其需要维护的特征如下：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;每一个节点的数据都要比它的两个子节点小（min-heap 场景)&lt;/li&gt;
-&lt;li&gt;只能在最后一层缺失节点，并且所有节点都尽量向左对齐&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;我们将第一则称为 &lt;code&gt;Min-heap property&lt;/code&gt; ，第二则称为 &lt;code&gt;Complete property&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;如下图所示：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/CS/CS61B/week8/1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;下面将简单介绍一下如何实现 PQ 的方法&lt;/p&gt;
-&lt;h3 id=&#34;methods&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#methods&#34;&gt;#&lt;/a&gt; Methods&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;add(x)&lt;/strong&gt;: 将 x 直接添加到最后一层空缺的第一位置，随后向上比对数据大小、交换数据以维护 &lt;code&gt;Min-heap property&lt;/code&gt; 。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;getSmallest()&lt;/strong&gt;: 直接返回 root node。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;removeSmallest()&lt;/strong&gt;: 将根节点与最后一层最后一项节点交换，然后移除交换后的最后一项（也就是之前的根节点），随后维护 Min-heap property。&lt;/p&gt;
-&lt;h2 id=&#34;tree-representations&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#tree-representations&#34;&gt;#&lt;/a&gt; Tree Representations&lt;/h2&gt;
-&lt;p&gt;可以直接以二叉树的形式实现，也可以用有序数组实现。&lt;/p&gt;
-&lt;p&gt;但最适合实现的是如下所示的数组&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/CS/CS61B/week8/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;我们将会利用该数组的元素信息和下标信息实现 heap&lt;/p&gt;
-&lt;p&gt;元素信息：节点的数据内容&lt;/p&gt;
-&lt;p&gt;下标信息：节点在数中的位置（也就是将数组中的下标映射到二叉树中）&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;在我看来，可以这样实现的重要前提就是堆的 &lt;code&gt;Complete property&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;那么，若想找到一个节点 (下标为 &lt;code&gt;x&lt;/code&gt; ) 的父节点，可以有如下方法&lt;/p&gt;
-&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;parent&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; index&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;index &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;index &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;假如设置数组的第二位元素 (下标 1) 为根节点那么如上的 &lt;code&gt;if(index == 0)&lt;/code&gt;  可以改为 &lt;code&gt;if(index == 1)&lt;/code&gt; ，下一条的 &lt;code&gt;return&lt;/code&gt;  同理&lt;/p&gt;
-&lt;p&gt;同样，我们也可以表示左孩和右孩&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;parent(x) = x/2&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;leftChild(x) = x*2 &lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;rightChild(x) = x*2 +1&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;最后，我们就用这样的 heap 实现了 PQ&lt;/p&gt;
-&lt;p&gt;得到的性能与其他数据结构对比&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;/pic/CS/CS61B/week8/3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-</content>
-        <category term="CS" scheme="https://cypressen.github.io/categories/CS/" />
-        <category term="CS61B" scheme="https://cypressen.github.io/categories/CS/CS61B/" />
-        <category term="java" scheme="https://cypressen.github.io/tags/java/" />
-        <category term="CS61B" scheme="https://cypressen.github.io/tags/CS61B/" />
-        <updated>2024-05-25T13:58:55.000Z</updated>
     </entry>
     <entry>
         <id>https://cypressen.github.io/languageStudy/%E6%97%A5%E6%9C%AC%E8%AA%9E/%E8%AF%8D%E7%B0%87/%E8%BE%9E%E6%9B%B8/</id>
@@ -130,6 +238,7 @@
 &lt;th&gt;词&lt;/th&gt;
 &lt;th&gt;音&lt;/th&gt;
 &lt;th&gt;意&lt;/th&gt;
+&lt;th&gt;源&lt;/th&gt;
 &lt;th&gt;备注&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
@@ -138,25 +247,50 @@
 &lt;td&gt;東海帝王&lt;/td&gt;
 &lt;td&gt;トウカイテイオー&lt;/td&gt;
 &lt;td&gt;东海帝王&lt;/td&gt;
-&lt;td&gt;记录自动画『ウマ娘』&lt;/td&gt;
+&lt;td&gt;动画『ウマ娘』&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;復活&lt;/td&gt;
 &lt;td&gt;フッカツ&lt;/td&gt;
 &lt;td&gt;复活&lt;/td&gt;
-&lt;td&gt;记录自动画『ウマ娘』&lt;/td&gt;
+&lt;td&gt;动画『ウマ娘』&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;どすこい&lt;/td&gt;
 &lt;td&gt;ドスコイ&lt;/td&gt;
 &lt;td&gt;烦色特了；烦死了&lt;/td&gt;
-&lt;td&gt;记录自 gal『Summer Pockets』&lt;/td&gt;
+&lt;td&gt;gal『Summer Pockets』&lt;/td&gt;
+&lt;td&gt;实际上是相扑用语，类似 “嘿咻！”&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;炒飯&lt;/td&gt;
 &lt;td&gt;チャーハン&lt;/td&gt;
 &lt;td&gt;炒饭&lt;/td&gt;
-&lt;td&gt;记录自 gal『Summer Pockets』&lt;/td&gt;
+&lt;td&gt;gal『Summer Pockets』&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;鴎&lt;/td&gt;
+&lt;td&gt;カモメ&lt;/td&gt;
+&lt;td&gt;鸥。海鸥&lt;/td&gt;
+&lt;td&gt;gal『Summer Pockets』&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;毎度あり&lt;/td&gt;
+&lt;td&gt;マイドアリ&lt;/td&gt;
+&lt;td&gt;谢谢惠顾。&lt;/td&gt;
+&lt;td&gt;gal『Summer Pockets』&lt;/td&gt;
+&lt;td&gt;My darling？&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;狼&lt;/td&gt;
+&lt;td&gt;オオカミ&lt;/td&gt;
+&lt;td&gt;狼。&lt;/td&gt;
+&lt;td&gt;adv『Raging Loop』&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
