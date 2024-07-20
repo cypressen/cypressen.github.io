@@ -26,7 +26,7 @@ categories:
 
 即properties。其形式如：
 
-```react Student组件
+```tsx
 function Student(props: { name: string; age?: number }) {
   return (
     <div>
@@ -40,7 +40,7 @@ export default Student;
 
 ```
 
-```react
+```tsx
 import Student from "./Student";
 function App() {
   const myAge: number = 200;
@@ -57,7 +57,7 @@ export default App;
 
 去显示props对象类型还可以通过使用PropTypes这一来自react库的一个组件，但不推荐这么写
 
-```react
+```tsx
 import PropTypes from 'prop-types'
 ...
 Student.propTypes = {
@@ -68,7 +68,7 @@ Student.propTypes = {
 
 限制props类型，建议采取如下可读性更好的写法
 
-```react
+```tsx
 interface StudentProps {
     name:string;
     age:number;
@@ -88,7 +88,7 @@ export default Student;
 
 如果参数少，还可以这样
 
-```react
+```tsx
 const Student = ({ name, age }: {
     name:string;
     age:number;
@@ -109,9 +109,7 @@ export default Student;
 
 选择渲染。
 
-也就是通过if，三目运算符？等选择返回HTML内容
-
-```react
+```tsx
 const UserGreeting = ({
   isLogged,
   userName,
@@ -133,9 +131,45 @@ export default UserGreeting;
 
 # Hook
 
+React 通过其虚拟DOM（Virtual DOM）机制来实现组件的重新渲染。这个过程大致可以分为以下几个步骤：
+
+1. **初始化渲染**：当组件首次渲染时，React 会根据组件的`render`方法（或函数组件的主体）生成一个虚拟DOM树。这个虚拟DOM树是一个轻量级的JavaScript对象结构，它代表了DOM的结构。
+2. **状态或属性变更**：当组件的状态（`state`）或属性（`props`）发生变化时，React 会触发重新渲染的流程。
+3. **生成新的虚拟DOM树**：React 会再次调用组件的`render`方法（或函数组件的主体），根据最新的状态和属性生成一个新的虚拟DOM树。
+4. **虚拟DOM比较（Diffing）**：React 会将新生成的虚拟DOM树与上一次渲染时的虚拟DOM树进行比较（这个过程也称为Diffing）。React 通过这种比较，找出实际DOM需要更新的最小变更集。
+5. **更新DOM**：一旦React确定了需要进行的DOM更新，它会尽可能高效地更新DOM，只修改那些实际发生变化的部分。
+6. **回调函数**：在DOM更新完成后，如果有需要，React 会执行如`componentDidUpdate`或useEffect等生命周期钩子或回调函数，以便进行进一步的操作。
+
+这个过程使得React能够以高效的方式更新DOM，避免不必要的操作，从而提高应用的性能。React的这种设计也使得开发者可以专注于状态管理，而不需要手动操作DOM。
+
+
+
+函数组件的重新渲染会再次调用该函数。
+
+
+
+React有个严格模式，它导致初始化时进行两次函数调用
+
+> `StrictMode` 是一个用于检测React应用中潜在问题的工具。它并不会渲染任何可见的UI，而是为其子组件树启用额外的检查和警告。使用`StrictMode`可以帮助你在开发过程中发现不安全的生命周期、过时的API调用、意外的副作用、使用废弃方法等问题。
+>
+> 主要目的包括：
+>
+> 1. **识别不安全的生命周期**：帮助识别和警告使用了即将废弃的生命周期的组件。
+> 2. **关于使用过时字符串ref API的警告**：鼓励使用回调形式的refs。
+> 3. **检测意外的副作用**：在开发模式下，`StrictMode`会故意将生命周期方法调用两次，以帮助识别副作用（例如，网络请求）可能导致的问题。
+> 4. **检测过时的context API**：警告过时的context API的使用。
+>
+> 使用`StrictMode`是一个很好的实践，特别是在开发大型应用时，它可以帮助开发者提前发现和修复潜在问题，促进使用更安全、更现代的React特性和实践。
+
+```tsx main.tsx
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+```
+
 ## useState()
 
-```react
+```tsx
 import { useState } from "react";
 
 const MyComponent = () => {
@@ -156,6 +190,139 @@ export default MyComponent;
 
 ```
 
+## useEffect()
+
+useEffect(function,[dependencies])
+
+- useEffect(function) 在每次有组件更新的时候，都会调用function函数
+- useEffect(function,[]) 只会执行一次function
+- useEffect(function,[dependencies]) 当数组内的元素有发生变化的时候，调用function
+
+如下所示，每次data被更新的时候就会调用function，而count更新不会调用function
+
+```tsx
+import { useState, useEffect } from "react";
+
+const MyComponent = () => {
+  const [data, setData] = useState<number>(0);
+
+  const addData = () => {
+    setData((data) => data + 1);
+  };
+
+  const [count, setCount] = useState<number>(0);
+  const addCount = () => {
+    setCount((count) => count + 1);
+  };
+  useEffect(() => {
+    document.title = `Data: ${data} |count: ${count} }`;
+  }, [data]);
+  return (
+    <div>
+      <p>data: {data}</p>
+      <button onClick={addData}>clicke me</button>
+      <br />
+      <p>count: {count}</p>
+      <button onClick={addCount}>clicke me</button>
+    </div>
+  );
+};
+
+export default MyComponent;
+
+```
+
+
+
+> Q:  函数组件在每次重新渲染的时候都会被调用，这意味着即便把useEffect的function的调用放在组件主体中，也可以实现在每次渲染的时候都能调用这个function。
+>
+> A: `useEffect`在 React 组件中用于处理副作用，其工作方式与将函数直接放在组件主体中有本质的不同。将函数放在组件主体中，意味着每次组件渲染时，该函数都会被调用。而 `useEffect`允许你控制这个函数调用的时机，通过依赖数组来精确控制。
+>
+>  以下是`useEffect`和直接在组件主体中调用函数的主要区别：
+>
+> 1. **控制调用时机**：
+>    - **直接调用**：每次组件渲染时都会执行。
+>    - **useEffect**：可以指定依赖项数组，仅在依赖项改变时执行。如果依赖项数组为空（`[]`），则仅在组件挂载时执行一次。
+> 2. **副作用处理**：
+>    - **直接调用**：不适合处理副作用（如数据获取、订阅设置、手动更改 DOM），因为这可能导致不必要的操作执行多次。
+>    - **useEffect**：专为处理副作用设计，可以在副作用函数中返回一个清理函数，用于组件卸载时执行清理操作。
+> 3. **性能优化**：
+>    - **直接调用**：可能会导致性能问题，因为每次渲染都会执行，即使相关数据没有变化。
+>    - **useEffect**：通过依赖项数组，可以避免不必要的副作用执行，从而优化性能。
+
+## 组件挂载
+
+组件挂载（Mounting）是React组件生命周期中的一个阶段。这个阶段发生在组件被创建并插入到DOM中的时候。在函数组件中，可以使用`useEffect`钩子（Hook）来模拟这个阶段的行为，通过将`useEffect`的依赖数组留空（`[]`），可以确保代码块只在组件挂载时执行一次。这个阶段是进行初始化操作，如API调用、状态设置等的理想时机。
+
+> Q: 那么组件重新渲染的时候组件还会再次挂载吗
+>
+> A: 组件重新渲染的时候，组件**不会**再次挂载。组件的挂载（Mounting）只在组件第一次渲染到DOM中时发生。重新渲染可能是由于状态（state）或道具（props）的更改触发的，但这属于更新（Updating）阶段，而非挂载阶段。在更新阶段，React会重新调用组件函数来获取新的JSX，并根据需要更新DOM，但不会重新执行挂载阶段的操作。
+
+
+
+
+
+## useRef()
+
+
+
+useRef 即useReference，它与useState相似，但是其区别在于useState会触发渲染，而useRef不会。
+
+下面例子展示了，useRef不会重新触发渲染，useEffect就不会多次执行，并且p标签的文本内容不会更新。可以通过控制台是否打印多次“Component mounted”来判断是否重新渲染。
+
+```tsx 
+import { useRef, useEffect } from "react";
+
+const MyComponent = () => {
+  const ref = useRef<number>(0);
+  const handleClick = () => {
+    ref.current += 1;
+    console.log(ref.current);
+  };
+
+  useEffect(() => {
+    console.log("Component mounted");
+  });
+  return (
+    <div>
+      <button onClick={handleClick}>Click me</button>
+      <p>ref.curren: {ref.current}</p>
+    </div>
+  );
+};
+
+export default MyComponent;
+
+```
+
+对HTML元素使用
+
+```tsx
+import { useRef, useEffect } from "react";
+
+const MyComponent = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const handleClick = () => {
+    if (inputRef.current) inputRef.current.style.backgroundColor = "red";
+  };
+
+  useEffect(() => {
+    console.log("Component mounted");
+  });
+  return (
+    <div>
+      <input ref={inputRef} />
+      <button onClick={handleClick}>Click me</button>
+    </div>
+  );
+};
+
+export default MyComponent;
+
+```
+
+
+
  # onChange property 
 
 `onChange`是一个React属性，用于监听表单元素（如`<input>`, `<textarea>`, 和`<select>`等）的值变化，并在每次值变化时执行指定的事件处理函数。在React中，`onChange`属性通常与组件的状态管理结合使用，以实现双向数据绑定，即将表单元素的值与组件状态同步。
@@ -170,7 +337,7 @@ export default MyComponent;
 
 
 
-```react
+```tsx
 import { useState } from "react";
 
 const MyComponent = () => {
@@ -194,7 +361,7 @@ export default MyComponent;
 
 另外一个关于select元素的例子
 
-```react
+```tsx
 import { useState } from "react";
 
 const MyComponent = () => {
@@ -220,7 +387,7 @@ export default MyComponent;
 
 在是一个radio的例子。这是一个单选的radio组 需要对每一个radio设置checked={state === *value*}。
 
-```react
+```tsx
 import { useState } from "react";
 
 const MyComponent = () => {
@@ -278,7 +445,7 @@ React如何调用这个函数的步骤大致如下：
 
 这种模式也支持React的并发特性，如时间切片（Time Slicing）和悬停（Suspense），因为React可以根据需要推迟或重新安排状态更新，而不会丢失任何状态更新的逻辑。
 
-```react
+```tsx
 import { useState } from "react";
 
 const MyComponent = () => {
@@ -311,7 +478,7 @@ export default MyComponent;
 
 下面则针对对象更新状态
 
-```react
+```tsx
 import { useState } from "react";
 
 interface MyObject {
@@ -353,4 +520,4 @@ export default MyComponent;
 
 ```
 
-数组同理
+数组同理。
